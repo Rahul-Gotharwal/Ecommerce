@@ -1,104 +1,123 @@
+import React from "react";
 import Image from "next/image";
-import { Inter } from "next/font/google";
-import React ,{useState,useEffect} from "react";
-const inter = Inter({ subsets: ["latin"] });
 import Script from "next/script";
-import { BsChevronBarLeft,BsChevronBarRight } from "react-icons/bs";
-import{RxDotFilled} from 'react-icons/rx'
-import Footer from "@/components/Footer";
-import Navbar from "@/components/Navbar";
-import { lib } from "crypto-js";
-export default function Home() {
-  const sliders = [
-    {
-      url:'https://img.freepik.com/free-psd/cozy-bedroom-hotel-room-with-double-bed-wooden-furniture_176382-1513.jpg?w=1380&t=st=1689263423~exp=1689264023~hmac=54070a97201898d294b2c2efce5c7c114dc96773206b34f0fecb109b1f6f6b0f'
-
-    },
-    {
-      url:'https://images.pexels.com/photos/7018391/pexels-photo-7018391.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
-
-    },
-    {
-      url:'https://images.pexels.com/photos/6438767/pexels-photo-6438767.jpeg?auto=compress&cs=tinysrgb&w=1600'
-
-    },
-    {
-      url:'https://images.pexels.com/photos/3288100/pexels-photo-3288100.png?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
-
-    },
-    {
-      url:'https://images.pexels.com/photos/7535008/pexels-photo-7535008.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
-
-    },
-    {
-      url:'https://images.pexels.com/photos/7031735/pexels-photo-7031735.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
-
-    },
-    {
-      url:'https://images.pexels.com/photos/763146/pexels-photo-763146.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
-
-    },
-    {
-      url:'https://images.pexels.com/photos/763146/pexels-photo-763146.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
-
-    },
-    {
-      url:'https://images.pexels.com/photos/2471188/pexels-photo-2471188.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
-
-    },
-  ]
-  const [currentIndex ,setCurrentIndex] = useState(0)
-  const prevSlide = ()=> {
-    const isFirstSlide = currentIndex===0;
-    const newIndex = isFirstSlide? sliders.length-1:currentIndex-1;
-    setCurrentIndex(newIndex);
-  }
-  const nextSlide = ()=> {
-    const isLastslide = currentIndex === sliders.length-1;
-    const newIndex = isLastslide ? 0 :currentIndex+1;
-    setCurrentIndex(newIndex);
-  }
-  const goToSlide = (slideIndex)=>{
-    setCurrentIndex(slideIndex)
-  }
-  useEffect(() => {
-    // Automatically switch to the next slide every 2 seconds
-    const interval = setInterval(nextSlide, 3000);
-
-    // Clean up the interval when the component is unmounted
-    return () => clearInterval(interval);
-  }, [currentIndex]);
+import Link from "next/link";
+import Product from "@/models/Product";
+import mongoose from "mongoose";
+import FeaturedCategories from "@/components/FeaturedCategories";
+const index = ({ products }) => {
   return (
-    <>
-    <Script src="https://checkout.razorpay.com/v1/checkout.js" />
-    <main>
+<> 
+<Script src="https://checkout.razorpay.com/v1/checkout.js" />
+<div className="hero-banner">
+        <div className="hero-content">
+            <h1 className="hero-title">Welcome to Our Store</h1>
+            <p className="hero-description">Discover a world of amazing products.</p>
+            <Link href="#" className="hero-button">Shop Now</Link>
+        </div>
+    </div>
+   
+    <div>
+    <div className="container mx-auto py-4 text-center">
+      <h1 className="text-2xl sm:text-2xl md:text-2xl font-bold text-orange-300 transition duration-300 hover:text-red-200">
+      Categories
+      </h1>
+    </div>
+      <FeaturedCategories />
+    </div>
 
-      <title> Shri_Ganesh_Fabrics</title>
-      <meta name="description" content="Badsheet-Hub For Your Family" />
-    
-      <div>
-        <div className="max-w-[1400px] h-[780px] w-full m-auto py-16 px-4 relative group  ">
-          <div style={{backgroundImage: `url(${sliders[currentIndex].url})`}} className="w-full h-full rounded-2xl bg-center bg-cover duration-500 "></div>
-        <div className=" hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[50%] left-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer">
-          <BsChevronBarLeft onClick={prevSlide} size={30}/>
-        </div>
-        <div className=" hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[50%] right-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer">
-          <BsChevronBarRight onClick={nextSlide} size = {30}/>
-        </div>
-        <div className=" flex top-4 justify-center py-2">
-        { sliders.map((slide,slideIndex)=>(
-         <div key={slideIndex} onClick={()=>goToSlide(slideIndex)} className="text-2xl cursor-pointer">
-          <RxDotFilled/>
-         </div>
-        ))}
-        </div>
-        </div>
-      </div>
-      <section className="text-gray-600 body-font">
+
+    <title> Shri_Ganesh_Fabrics</title>
+     <meta name="description" content="Badsheet-Hub For Your Family" />
+     <section className="text-gray-600 body-font">
+  <div className="container px-5 py-24 mx-auto">
+    <h1 className="text-3xl text-center font-semibold mb-8 text-indigo-600 hover:text-indigo-900 transition duration-300 ease-in-out">
+      Best Selling Products
+    </h1>
+    <div className="flex flex-wrap -m-4">
+      {Object.keys(products).map((item, index) => {
+        const isEvenIndex = index % 2 === 0;
+        return (
+          <div
+            key={products[item]._id}
+            className={`p-4 lg:w-1/4 md:w-1/2 sm:w-1/2 ${
+              isEvenIndex ? "lg:pr-2" : "lg:pl-2"
+            }`}
+          >
+            <div className="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
+              <Link passHref={true} href={`/product/${products[item].slug}`} className="text-indigo-500 inline-flex items-center md:mb-2 lg:mb-0">
+                <img
+                  className="lg:h-72 md:h-60 md:mx-20 w-full lg:mx-20  h-auto object-cover object-center transition-transform hover:scale-105"
+                  src={products[item].img}
+                  alt="ecommerce"
+                />
+              </Link>
+              <div className="p-6">
+                <h2 className="tracking-widest text-xs title-font font-medium text-gray-900 hover:text-indigo-600 transition duration-300 ease-in-out mb-2">
+                  {products[item].title}
+                </h2>
+
+                <div className="flex items-center flex-wrap">
+                  <Link passHref={true} href={`/product/${products[item].slug}`} className="text-indigo-500 inline-flex items-center md:mb-2 lg:mb-0 hover:text-indigo-900 transition duration-300 ease-in-out">
+                    More..
+                    <svg
+                      className="w-4 h-4 ml-2 text-indigo-500 hover:text-indigo-900 transition duration-300 ease-in-out"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      fill="none"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M5 12h14"></path>
+                      <path d="M12 5l7 7-7 7"></path>
+                    </svg>
+                  </Link>
+                  <span className="text-gray-400 mr-3 inline-flex items-center lg:ml-auto md:ml-0 ml-auto leading-none text-sm pr-3 py-1 border-r-2 border-gray-200">
+                    <svg
+                      className="w-4 h-4 mr-1 text-indigo-500"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      fill="none"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                      <circle cx="12" cy="12" r="3"></circle>
+                    </svg>
+                    1.2K
+                  </span>
+                  <span className="text-gray-400 inline-flex items-center leading-none text-sm">
+                    <svg
+                      className="w-4 h-4 mr-1 text-indigo-500"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      fill="none"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"></path>
+                    </svg>
+                    6
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+</section>
+
+
+<section className="text-gray-600 body-font">
         <div className="container px-5 py-24 mx-auto">
           <div className="flex flex-wrap w-full mb-20 flex-col items-center text-center">
             <h1 className="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">
-              Bedsheets for your happy Family
+              Bedsheets for your happy family
             </h1>
             <p className="lg:w-1/2 w-full leading-relaxed text-gray-500">
             The bedsheet designs come in different sizes, such as single, double, and so on.
@@ -251,8 +270,45 @@ export default function Home() {
          
         </div>
       </section>
-    
-    </main>
-    </>
+</>
   );
+};
+export async function getServerSideProps(context) {
+  if (!mongoose.connections[0].readyState) {
+    await mongoose.connect(process.env.MONGO_URI);
+  }
+
+  let products = await Product.find({ category: "index" });
+  let index = {};
+  for (let item of products) {
+    if (item.title in index) {
+      if (
+        !index[item.title].color.includes(item.color) &&
+        item.availableQty > 0
+      ) {
+        index[item.title].color.push(item.color);
+      }
+      if (
+        !index[item.title].size.includes(item.size) &&
+        item.availableQty > 0
+      ) {
+        index[item.title].size.push(item.size);
+      }
+    } else {
+      index[item.title] = JSON.parse(JSON.stringify(item));
+      if (item.availableQty > 0) {
+        index[item.title].color = [item.color];
+        index[item.title].size = [item.size];
+      } else {
+        index[item.title].color = [];
+        index[item.title].size = [];
+      }
+    }
+  }
+
+  return {
+    props: { products: JSON.parse(JSON.stringify(index)) }, // will be passed to the page component as props
+  };
 }
+
+export default index;
