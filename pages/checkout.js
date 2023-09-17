@@ -19,6 +19,7 @@ const checkout = ({ cart, clearCart, addToCart, removeFromCart, subTotal }) => {
   const [disabled, setDisabled] = useState(true);
   const [user, setuser] = useState({ value: null });
   const [paymentMethod, setPaymentMethod] = useState("online");
+  const [userEmail, setUserEmail] = useState("");
   useEffect(() => {
     const myuser = JSON.parse(localStorage.getItem("myuser"));
     if (myuser && myuser.token) {
@@ -34,6 +35,29 @@ const checkout = ({ cart, clearCart, addToCart, removeFromCart, subTotal }) => {
       setDisabled(true);
     }
   });
+  const router = useRouter()
+  useEffect(() => {
+    // Check if the user is authenticated based on email
+    const userEmail = localStorage.getItem("myuser");
+    if (!userEmail) {
+    toast.error("Please log in for a better shopping experience!", {
+      position: "top-left",
+      autoClose: 4000, // You can adjust the duration
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+
+    setTimeout(() => {
+      router.push("/login"); // Redirect to the login page
+    }, 4000); // Redirect to the login page
+    } 
+    else {
+    
+    }
+  }, []);
   const fetchData = async (token) => {
     let data = { token: token };
     let a = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/getuser`, {
@@ -421,7 +445,7 @@ const checkout = ({ cart, clearCart, addToCart, removeFromCart, subTotal }) => {
             </div>
           </div>
           <h2 className="text-xl font-bold  "> 2.Review Cart Items & Pay</h2>
-          <div className=" z-50  sideCart hover:opacity-100 bg-indigo-50 px-8 py-10 ">
+          <div className=" z-50  sideCart hover:opacity-100 bg-white px-8 py-10 ">
             <ol className="list-decimal font-semibold">
               {Object.keys(cart).length == 0 && (
                 <div className="my-4 font-semibold mx-auto ml-6 justify-center items-center">
@@ -511,17 +535,25 @@ const checkout = ({ cart, clearCart, addToCart, removeFromCart, subTotal }) => {
             </label>
           </div>
           <div className="mx-4">
-            <Link href={"/checkout"}>
-              {" "}
-              <button
-                onClick={handlePayment}
-                disabled={disabled}
-                className="disabled:bg-indigo-300 flex mx-auto text-white bg-indigo-600 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg"
-              >
-                <BsFillBagCheckFill className="mt-1" /> Pay-Now ₹{subTotal}{" "}
-              </button>
-            </Link>
-          </div>
+         <Link href={"/checkout"}>
+          {!userEmail ? (
+            <button
+              onClick={handlePayment}
+              disabled={disabled}
+              className="disabled:bg-indigo-300 flex mx-auto text-white bg-indigo-600 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg"
+            >
+              <BsFillBagCheckFill className="mt-1" /> Pay-Now ₹{subTotal}{" "}
+            </button>
+          ) : (
+            <button
+              onClick={handlePayment}
+              className="flex mx-auto text-white bg-indigo-600 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg"
+            >
+              <BsFillBagCheckFill className="mt-1" /> Pay-Now ₹{subTotal}{" "}
+            </button>
+          )}
+        </Link>
+      </div>
         </div>
       </div>
     </>

@@ -9,7 +9,7 @@ const handler = async (req, res) => {
   try {
     const orders = await Order.find({
       email: data.email,
-      $or: [{ status: "paid" }, { status: "Initiated" }],
+      $or: [{ status: "paid" }, { status: "pending" }, { status: "Initiated" }],
     });
 
     res.status(200).json({ orders });

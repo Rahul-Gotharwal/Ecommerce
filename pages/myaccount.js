@@ -35,7 +35,6 @@ const myaccount = () => {
       body: JSON.stringify(data),
     });
     let res = await a.json();
-    console.log(res);
     setname(res.name);
     setaddress(res.address);
     setpincode(res.pincode);

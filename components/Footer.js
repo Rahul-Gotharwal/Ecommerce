@@ -50,47 +50,26 @@ const Footer = () => {
           </li>
         </nav>
       </div>
-      <div className="lg:w-1/4 md:w-1/2 w-full px-4">
-        <h2 className="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">CATEGORIES</h2>
-        <nav className="list-none mb-10">
-          <li>
-            <a className="text-indigo-300 hover:text-indigo-600">First Link</a>
-          </li>
-          <li>
-            <a className="text-indigo-300 hover:text-indigo-600">Second Link</a>
-          </li>
-          <li>
-            <a className="text-indigo-300 hover:text-indigo-600">Third Link</a>
-          </li>
-          <li>
-            <a className="text-indigo-300 hover:text-indigo-600">Fourth Link</a>
-          </li>
-        </nav>
-      </div>
-      <div className="lg:w-1/4 md:w-1/2 w-full px-4">
-        <h2 className="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">CATEGORIES</h2>
-        <nav className="list-none mb-10">
-          <li>
-            <a className="text-indigo-300 hover:text-indigo-600">First Link</a>
-          </li>
-          <li>
-            <a className="text-indigo-300 hover:text-indigo-600">Second Link</a>
-          </li>
-          <li>
-            <a className="text-indigo-300 hover:text-indigo-600">Third Link</a>
-          </li>
-          <li>
-            <a className="text-indigo-300 hover:text-indigo-600">Fourth Link</a>
-          </li>
-        </nav>
-      </div>
+      
     </div>
   </div>
-  <div className="bg-gray-100">
+  <div className="bg-white">
     <div className="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
-      <p className="text-gray-500 text-sm text-center sm:text-left">© 2023 Shri_Ganesh_Fabrics — All Rights Reserved
-       
-      </p>
+      <div className="bg-white">
+      <div className="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
+        <p className="text-gray-500 text-sm text-center sm:text-left">© 2023 Shri_Ganesh_Fabrics — All Rights Reserved</p>
+        {/* Add the payment accepted image */}
+        <img
+  src="/payment.png"
+  alt="Payment Accepted"
+  className="w-full  lg:h-16  xl:h-16 ml-3"
+/>
+
+        <span className="inline-flex sm:ml-auto sm:mt-0 mt-2 justify-center sm:justify-start">
+          {/* ... Social media icons ... */}
+        </span>
+      </div>
+    </div>
       <span className="inline-flex sm:ml-auto sm:mt-0 mt-2 justify-center sm:justify-start">
         <a className="text-gray-500">
           <svg fill="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-5 h-5" viewBox="0 0 24 24">

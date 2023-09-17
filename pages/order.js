@@ -23,14 +23,25 @@ const MyOrder = ({ newOrder, clearCart }) => {
             <h2 className="text-sm text-indigo-500 tracking-widest uppercase">
               Shri_Ganesh_Fabrics
             </h2>
-            <h1 className="text-4xl font-bold text-indigo-600 mb-4">Thank you, {newOrder.name}!</h1>
+            <h1 className="text-4xl font-bold text-indigo-600 mb-4">
+              Thank you, {newOrder.name}!
+            </h1>
             <h1 className="text-gray-900 text-xl md:text-3xl font-semibold mb-2 md:mb-4">
               Order ID: {newOrder.orderId}
             </h1>
 
             <p className="leading-relaxed mb-4">
-              Hurry! Your order has been successfully placed!
+              {newOrder.status === "paid" ? (
+                <>Hurry! Your order has been successfully placed!</>
+              ) : newOrder.status === "Initiated" ? (
+                <>
+                  Hurry! Your order has been successfully placed! 
+                </>
+              ) : (
+                <>Payment not received or choose Cash on Delivery (COD)</>
+              )}
             </p>
+
             <p className="leading-relaxed mb-4 font-bold">
               Order Placed On:{" "}
               {date &&
