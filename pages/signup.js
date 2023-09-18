@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+ import React, { useState,useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { set } from "mongoose";
@@ -55,153 +55,60 @@ const signup = () => {
        
   };
   return (
-    <div>
-      <section className="gradient-form h-full bg-neutral-200 dark:bg-neutral-700 min-h-screen">
-        <div className="container h-full p-10">
-          <div className="g-6 flex h-full flex-wrap items-center justify-center text-neutral-800 dark:text-neutral-200">
-            <div className="w-full">
-              <div className="block rounded-lg bg-white shadow-lg dark:bg-neutral-800">
-                <div className="g-0 lg:flex lg:flex-wrap">
-                  <div className="px-4 md:px-0 lg:w-6/12">
-                    <div className="md:mx-6 md:p-12">
-                      <div className="text-center">
-                        <ToastContainer
-                          position="bottom-left"
-                          autoClose={5000}
-                          hideProgressBar={false}
-                          newestOnTop={false}
-                          closeOnClick
-                          rtl={false}
-                          pauseOnFocusLoss
-                          draggable
-                          pauseOnHover
-                          theme="light"
-                        />
-                      
-                      </div>
+    <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+    <ToastContainer
+      position="bottom-left"
+      autoClose={5000}
+      hideProgressBar={false}
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+      theme="light"
+    />
+  <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+    <img className="mx-auto h-10 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company"/>
+    <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Create account</h2>
+  </div>
 
-                      <form onSubmit={handleSubmit} method="POST">
-                        <p className="mb-4 text-center my-4">Register Yourself!</p>
-                        <div
-                          className="relative mb-4"
-                          data-te-input-wrapper-init
-                        >
-                          <input
-                            value={name}
-                            onChange={handleChange}
-                            type="text"
-                            name="name"
-                            className="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
-                            id="name"
-                            placeholder="Enter Your Name"
-                          />
-                          <label
-                            htmlFor="name"
-                            className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
-                          >
-                            Enter Name
-                          </label>
-                        </div>
-                        <div
-                          className="relative mb-4"
-                          data-te-input-wrapper-init
-                        >
-                          <input
-                            value={email}
-                            onChange={handleChange}
-                            type="email"
-                            name="email"
-                            className="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
-                            id="email"
-                            placeholder="Email"
-                          />
-                          <label
-                            htmlFor="email"
-                            className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
-                          >
-                            Enter Your Email
-                          </label>
-                        </div>
-
-                        <div
-                          className="relative mb-4"
-                          data-te-input-wrapper-init
-                        >
-                          <input
-                            value={password}
-                            onChange={handleChange}
-                            type="password"
-                            name="password"
-                            className="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
-                            id="password"
-                            placeholder="Password"
-                          />
-                          <label
-                            htmlFor="password"
-                            className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
-                          >
-                            Enter Your Password
-                          </label>
-                        </div>
-
-                        <div className="mb-12 pb-1 pt-1 text-center">
-                          <button
-                            onClick={handleSubmit}
-                            className="mb-3 inline-block w-full rounded px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_rgba(0,0,0,0.2)] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)]"
-                            type="button"
-                            data-te-ripple-init
-                            data-te-ripple-color="light"
-                            style={{
-                              background:
-                              "linear-gradient(to right, #6574cd, #7886d1, #b2b0e1, #e0aaff)",
-                            }}
-                          >
-                            Create Account!
-                          </button>
-                        </div>
-                        <div className="flex items-center justify-between pb-6">
-                          <p className="mb-0 mr-2">
-                            {" "}
-                            <Link href={"/forgot"}>Forgot password?</Link>{" "}
-                          </p>
-                          <Link href={"/login"}>
-                            <button
-                              type="button"
-                              className="inline-block rounded border-2 border-danger px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-danger transition duration-150 ease-in-out hover:border-danger-600 hover:bg-neutral-500 hover:bg-opacity-10 hover:text-danger-600 focus:border-danger-600 focus:text-danger-600 focus:outline-none focus:ring-0 active:border-danger-700 active:text-danger-700 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10"
-                              data-te-ripple-init
-                              data-te-ripple-color="light"
-                            >
-                              login
-                            </button>
-                          </Link>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-
-                  <div
-                    className="flex items-center rounded-b-lg lg:w-6/12 lg:rounded-r-lg lg:rounded-bl-none"
-                    style={{
-                      background:
-                      "linear-gradient(to right, #6574cd, #7886d1, #b2b0e1, #e0aaff)",
-                    }}
-                  >
-                    <div className="px-4 py-6 text-white md:mx-6 md:p-12">
-                      <h4 className="mb-6 text-xl font-semibold">
-                        We are more than just a company
-                      </h4>
-                      <p className="text-sm">
-                           At Shri_Ganesh_Fabrics, we believe we're more than just a company. We're a community of individuals who share a passion for quality, comfort, and creativity. Our commitment extends beyond crafting exceptional bedsheets and fabrics;  we are dedicated to making a positive impact on the world we all share. Join us in this journey, where every purchase you make supports our vision of a better tomorrow. Together, we're not just transforming spaces, but also touching hearts and making a difference.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+  <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+   <form onSubmit={handleSubmit} method="POST">
+   <div>
+        <label htmlFor="name" className="block text-sm font-medium leading-6 text-gray-900">Name</label>
+        <div className="mt-2">
+          <input  onChange={handleChange} value={name} id="name" name="name" type="text" autoComplete="name" required className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"/>
         </div>
-      </section>
-    </div>
+      </div>
+      <div>
+        <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">Email address</label>
+        <div className="mt-2">
+          <input  onChange={handleChange} value={email} id="email" name="email" type="email" autoComplete="email" required className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"/>
+        </div>
+      </div>
+
+      <div>
+        <div className="flex items-center justify-between">
+          <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">Password</label>
+          
+        </div>
+        <div className="mt-2">
+          <input  onChange={handleChange} value={password} id="password" name="password" type="password" autoComplete="current-password" required className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"/>
+        </div>
+      </div>
+
+      <div>
+        <button  onClick={handleSubmit} type="submit" className="flex mt-2 w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign up</button>
+      </div>
+    </form>
+
+    <p className="mt-10 text-center text-sm text-gray-500">
+     login
+      <Link href="/login" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">login  account</Link>
+    </p>
+  </div>
+</div>
   );
 };
 
