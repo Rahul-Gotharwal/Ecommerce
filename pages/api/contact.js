@@ -1,3 +1,4 @@
+
 import Contact from "@/models/Contact";
 import connectDb from "@/middleware/mongoose";
 const handler = async (req, res) => {
