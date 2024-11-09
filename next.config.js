@@ -15,6 +15,10 @@ const nextConfig = {
           {
             key: 'Access-Control-Allow-Origin',
             value: "*" // Replace with your frontend URL
+            //https://www.geeksforgeeks.org/how-to-fix-cors-errors-in-next-js-and-vercel/
+            // this is the domain url we have and i think we have to send serve here  
+            //ecommerce-lake-xi.vercel.app 
+ 
           },
           {
             key: 'Access-Control-Allow-Methods',
