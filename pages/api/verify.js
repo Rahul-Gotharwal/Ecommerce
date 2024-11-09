@@ -1,5 +1,5 @@
 import Razorpay from "razorpay";
-import { runCors } from "../lib/cors";
+import { runCors } from "./lib/cors";
 export default async function handler(req, res) {
   await runCors(req, res);
   const check = Razorpay.validateWebhookSignature(

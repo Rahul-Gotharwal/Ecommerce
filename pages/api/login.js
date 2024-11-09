@@ -2,7 +2,7 @@ import User from "@/models/User";
 import connectDb from "@/middleware/mongoose";
 import CryptoJS from "crypto-js";
 import jwt from "jsonwebtoken";
-import { runCors } from "../lib/cors";
+import { runCors } from "./lib/cors";
 const handler = async (req, res) => {
   await runCors(req, res);
   if (req.method === "POST") {

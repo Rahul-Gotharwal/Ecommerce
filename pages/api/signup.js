@@ -1,7 +1,7 @@
 import User from "@/models/User";
 import connectDb from "@/middleware/mongoose";
 var CryptoJS = require("crypto-js");
-import { runCors } from "../lib/cors";
+import { runCors } from "./lib/cors";
 const handler = async (req, res) => {
   await runCors(req, res);
   if (req.method == "POST") { 
