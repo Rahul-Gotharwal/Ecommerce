@@ -7,7 +7,7 @@ import pincodes from '../../pincodes.json'
 import { runCors } from "./lib/cors";
 
 const handler = async (req, res) => {
-  await runCors(req, res);
+
   if (req.method === "POST") {
     const instance = new Razorpay({
       key_id: process.env.RAZORPAY_API_KEY,

@@ -1,9 +1,8 @@
 import Product from "@/models/Product";
 import connectDb from "@/middleware/mongoose";
-import { runCors } from "./lib/cors";
 const handler = async (req, res) => {
   // Run the CORS middleware
-  await runCors(req, res);
+
   if (req.method == "POST") {
    
     for (let i = 0; i<req.body.length; i++) {

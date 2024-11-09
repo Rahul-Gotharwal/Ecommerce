@@ -4,7 +4,7 @@ import { runCors } from './lib/cors';
 export default async function handler(req, res) {
   try {
     // Run the CORS middleware (now it returns a Promise)
-    await runCors(req, res);
+
     
     // Send the pincodes data as a response
     res.status(200).json(pincodes);
