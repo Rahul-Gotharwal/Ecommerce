@@ -3,8 +3,8 @@ import Cors from 'cors';
 // Initialize CORS middleware
 const cors = Cors({
   //https://ecommerce-3vsnqylwx-rahulgotharwals-projects.vercel.app/
-  // we need to write this frontend url in the cors origin insted the => 'https://ecommerce-lake-xi.vercel.app
-  origin: 'https://ecommerce-rahulgotharwals-projects.vercel.app', // Update with your new frontend URL
+  // we need to write this frontend url in the cors origin insted the 'https://ecommerce-lake-xi.vercel.app
+  origin:process.env.NEXT_PUBLIC_HOST , // Update with your new frontend URL
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 });
