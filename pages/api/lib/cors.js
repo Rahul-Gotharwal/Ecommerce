@@ -2,7 +2,7 @@ import Cors from 'cors';
 
 // Initialize CORS middleware
 const cors = Cors({
-    origin: 'https://ecommerce-lxexy4r9q-rahulgotharwals-projects.vercel.app', // Replace with your frontend origin
+  origin: 'https://ecommerce-lake-xi.vercel.app', // Update with your new frontend URL
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 });
