@@ -1,7 +1,9 @@
 import User from "@/models/User"
 import connectDb from "@/middleware/mongoose"
 const jwt = require ('jsonwebtoken')
+import { runCors } from "../lib/cors"
 const handler= async(req, res) =>{
+    await runCors(req, res);
     if(req.method=="POST"){
         let token = req.body.token
         let user = jwt.verify(token , process.env.JWT_SECRET)

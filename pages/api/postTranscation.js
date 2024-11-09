@@ -2,8 +2,10 @@ import crypto from "crypto";
 import connectDb from "@/middleware/mongoose";
 import Order from "@/models/Order";
 import Product from "@/models/Product";
+import { runCors } from "../lib/cors";
 // add a check for status pending give this instruction to the chat gpt
 const handler = async (req, res) => {
+  await runCors(req, res);
   try {
     const { razorpay_payment_id, razorpay_order_id, razorpay_signature } = req.body;
 

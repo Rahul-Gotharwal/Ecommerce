@@ -39,7 +39,7 @@ const checkout = ({ cart, clearCart, addToCart, removeFromCart, subTotal }) => {
   useEffect(() => {
     // Check if the user is authenticated based on email
     const userEmail = localStorage.getItem("myuser");
-    if (!userEmail) {
+    if (!userEmail ) {
     toast.error("Please log in for a better shopping experience!", {
       position: "top-left",
       autoClose: 4000, // You can adjust the duration
@@ -54,9 +54,6 @@ const checkout = ({ cart, clearCart, addToCart, removeFromCart, subTotal }) => {
       router.push("/login"); // Redirect to the login page
     }, 4000); // Redirect to the login page
     } 
-    else {
-    
-    }
   }, []);
   const fetchData = async (token) => {
     let data = { token: token };
@@ -68,7 +65,6 @@ const checkout = ({ cart, clearCart, addToCart, removeFromCart, subTotal }) => {
       body: JSON.stringify(data),
     });
     let res = await a.json();
-    console.log(res);
     setname(res.name);
     setaddress(res.address);
     getPincode(res.pincode);
@@ -86,7 +82,6 @@ const checkout = ({ cart, clearCart, addToCart, removeFromCart, subTotal }) => {
         setcity("");
       }
     } catch (error) {
-      console.error("Error fetching pincode details:", error);
       setstate("");
       setcity("");
     }

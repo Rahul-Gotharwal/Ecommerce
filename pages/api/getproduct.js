@@ -1,6 +1,9 @@
 import Product from "@/models/Product"
 import connectDb from "@/middleware/mongoose"
+import { runCors } from "../lib/cors"
 const handler = async (req,res )=>{
+  await runCors(req, res);
+
     let products = await Product.find()
     let badsheet = {}
     for(let item of products){
