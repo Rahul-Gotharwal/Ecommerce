@@ -4,7 +4,6 @@ import Order from "@/models/Order";
 import Product from "@/models/Product";
 import connectDb from "@/middleware/mongoose";
 import pincodes from '../../pincodes.json'
-import { runCors } from "./lib/cors";
 
 const handler = async (req, res) => {
 

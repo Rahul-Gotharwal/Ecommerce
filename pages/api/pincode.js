@@ -1,6 +1,4 @@
 import pincodes from '../../pincodes.json';
-import { runCors } from './lib/cors';
-
 export default async function handler(req, res) {
   try {
     // Run the CORS middleware (now it returns a Promise)

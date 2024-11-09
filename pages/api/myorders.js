@@ -1,8 +1,6 @@
 import connectDb from "@/middleware/mongoose";
 import Order from "@/models/Order";
 const jwt = require ('jsonwebtoken')
-import { runCors } from "./lib/cors";
-
 const handler = async (req, res) => {
 
   const token = req.body.token 

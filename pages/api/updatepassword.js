@@ -2,7 +2,6 @@ import User from "@/models/User"
 import connectDb from "@/middleware/mongoose"
 const jwt = require ('jsonwebtoken')
 import CryptoJS from "crypto-js"
-import { runCors } from "./lib/cors"
 const handler= async(req, res) =>{
 
     if(req.method=="POST"){
