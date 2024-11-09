@@ -14,7 +14,7 @@ const nextConfig = {
           },
           {
             key: 'Access-Control-Allow-Origin',
-            value: 'https://ecommerce-lake-xi.vercel.app ' || "*", // Replace with your frontend URL
+            value: "*" // Replace with your frontend URL
           },
           {
             key: 'Access-Control-Allow-Methods',
